@@ -53,6 +53,7 @@ public class Order {
     }
 
     public double getOrderPrice() {
-        return product.getPrice() * getQuantity();
+        // Use product price with discount; Product#getPriceWithDiscount already caps discount to maxDiscount
+        return product.getPriceWithDiscount(discount) * quantity;
     }
 }
