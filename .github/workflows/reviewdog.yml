@@ -1,4 +1,4 @@
-name: reviewdog
+name: Lint with Reviewdog
 on: [pull_request]
 permissions:
   pull-requests: write
