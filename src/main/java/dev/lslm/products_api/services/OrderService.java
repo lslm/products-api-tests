@@ -60,7 +60,7 @@ public class OrderService {
                 .orElseThrow(() -> new IllegalArgumentException("Stock not found for product: " + productId));
 
         if (stock.getQuantity() < quantity) {
-            throw new IllegalStateException("Insufficient stock. Available=" + stock.getQuantity() + ", requested=" + quantity);
+            throw new IllegalStateException("Unavailable stock. Available=" + stock.getQuantity() + ", requested=" + quantity);
         }
 
         // Decrease stock
