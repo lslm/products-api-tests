@@ -47,16 +47,16 @@ public class OrderService {
             throw new IllegalArgumentException("Quantity must be greater than zero");
         }
 
-        Product Product = productRepository.findById(productId)
+        Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
 
         // Normalize discount
         if (discount < 0) discount = 0.0;
-        if (discount > Product.getMaxDiscount()) {
-            discount = Product.getMaxDiscount();
+        if (discount > product.getMaxDiscount()) {
+            discount = product.getMaxDiscount();
         }
 
-        Stock Stock = stockRepository.findByProduct(Product)
+        Stock Stock = stockRepository.findByProduct(product)
                 .orElseThrow(() -> new IllegalArgumentException("Stock not found for product: " + productId));
 
         if (Stock.getQuantity() < quantity) {
@@ -69,7 +69,7 @@ public class OrderService {
 
         // Create and persist order
         Order order = new Order();
-        order.setProduct(Product);
+        order.setProduct(product);
         order.setQuantity(quantity);
         order.setDiscount(discount);
 
