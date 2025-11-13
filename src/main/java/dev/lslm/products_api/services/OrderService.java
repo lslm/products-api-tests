@@ -56,16 +56,16 @@ public class OrderService {
             discount = product.getMaxDiscount();
         }
 
-        Stock stock = stockRepository.findByProduct(product)
+        Stock Stock = stockRepository.findByProduct(product)
                 .orElseThrow(() -> new IllegalArgumentException("Stock not found for product: " + productId));
 
-        if (stock.getQuantity() < quantity) {
-            throw new IllegalStateException("Unavailable stock. Available=" + stock.getQuantity() + ", requested=" + quantity);
+        if (Stock.getQuantity() < quantity) {
+            throw new IllegalStateException("Unavailable stock. Available=" + Stock.getQuantity() + ", requested=" + quantity);
         }
 
         // Decrease stock
-        stock.setQuantity(stock.getQuantity() - quantity);
-        stockRepository.save(stock);
+        Stock.setQuantity(Stock.getQuantity() - quantity);
+        stockRepository.save(Stock);
 
         // Create and persist order
         Order order = new Order();
