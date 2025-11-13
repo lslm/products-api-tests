@@ -62,7 +62,7 @@ class OrderServiceTests {
 
         IllegalStateException ex = Assertions.assertThrows(IllegalStateException.class,
                 () -> orderService.createOrder(p.getId(), 5, 0.1));
-        Assertions.assertTrue(ex.getMessage().contains("Insufficient stock"));
+        Assertions.assertTrue(ex.getMessage().contains("Unavailable stock"));
     }
 
     @Test

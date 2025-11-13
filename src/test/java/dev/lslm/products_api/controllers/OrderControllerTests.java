@@ -77,7 +77,7 @@ public class OrderControllerTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(body))
                 .andExpect(status().isConflict())
-                .andExpect(content().string(containsString("Insufficient stock")));
+                .andExpect(content().string(containsString("Unavailable stock")));
     }
 
     @Test
